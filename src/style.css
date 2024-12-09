@@ -13,16 +13,28 @@ h2 {
   color: #142d4c;
   font-size: 2.4rem;
 }
-h2 {
+.city {
   margin-bottom: 5px;
   font-size: 1.7em;
+  text-transform: capitalize;
 }
-h3 {
-  color: #385170;
-  margin: 20px;
-}
-p {
+
+.date {
   margin-top: 5px;
+}
+
+.time {
+  color: #385170;
+  font-weight: bold;
+  margin: 20px;
+  display: block;
+  font-size: 1.17em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  unicode-bidi: isolate;
+  margin: 10px 0;
 }
 
 a {
