@@ -7,11 +7,12 @@ const cities = {
 };
 
 let selectedCity = null;
+let intervalId = null;
 
 let getAllCities = () => {
   let featuredCityHTML = "";
   for (let city in cities) {
-    let time = moment.tz(cities[city]).format("HH:mm:ss");
+    let time = moment.tz(cities[city]).format("HH:mm");
     let date = moment.tz(cities[city]).format("MMMM Do YYYY");
 
     featuredCityHTML =
@@ -30,32 +31,38 @@ let getAllCities = () => {
   displayAllCitiesOnLoad.innerHTML = featuredCityHTML;
 };
 
-let getCity = (e) => {
-  selectedCity = e.target.value;
-
-  let time = moment.tz(cities[selectedCity]).format("HH:mm:ss");
+let displaySelectedCity = () => {
+  let time = moment.tz(cities[selectedCity]).format("HH:mm");
   let date = moment.tz(cities[selectedCity]).format("MMMM Do YYYY");
 
   let featureCityData = document.querySelector(".city-time-container");
   featureCityData.innerHTML = `     <div class="city-sub-container">
-        <div id="city-data">
-        <h2 class="city">${selectedCity}</h2>
-        <p class="date">${date}</p>
-        </div>
-        <div class="time">${time}</div>
-        </div>    `;
-  return time;
+          <div id="city-data">
+          <h2 class="city">${selectedCity}</h2>
+          <p class="date">${date}</p>
+          </div>
+          <div class="time">${time}</div>
+          </div>    `;
 };
 
-// let onLoadCities = () => {
-//   if (selectedCity === null) {
-//     getAllCities();
-//   } else {
-//     getCity(selectedCity);
-//   }
-// };
+let getCity = (e) => {
+  selectedCity = e.target.value || null;
+  clearInterval(intervalId);
+
+  if (selectedCity === null) {
+    intervalId = setInterval(getAllCities, 5000);
+    getAllCities();
+  } else {
+    intervalId = setInterval(displaySelectedCity, 5000);
+    displaySelectedCity();
+  }
+};
+
+let onLoadCities = () => {
+  getAllCities();
+  intervalId = setInterval(getAllCities, 5000);
+};
 
 let cityDisplayed = document.querySelector("#select-form");
 cityDisplayed.addEventListener("change", getCity);
-
 window.addEventListener("load", onLoadCities);
