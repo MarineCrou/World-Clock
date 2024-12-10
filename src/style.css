@@ -5,6 +5,9 @@ body {
   background-color: #ececec;
   color: #385170;
 }
+hr {
+  border-top: 1px solid #9fd3c7;
+}
 
 h1,
 h2 {
@@ -63,7 +66,7 @@ header {
   width: 100%;
 }
 
-header div a img {
+header div img {
   max-width: 70px;
 }
 
@@ -79,9 +82,17 @@ header div a img {
 
 .city-time-container {
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.city-sub-container {
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .date {

@@ -1,38 +1,61 @@
-let getCity = (e) => {
-  console.log(e.target.value);
-  let cityValue = e.target.value;
-
-  let featureCityDateHTML = "";
-
-  if (cityValue != "") {
-    const cities = {
-      sydney: "Australia/Sydney",
-      paris: "Europe/Paris",
-      london: "Europe/London",
-      "new-york": "America/New_York",
-    };
-
-    console.log();
-    let time = moment.tz(cities[cityValue]).format("hh:mm:ss");
-    let date = moment.tz(cities[cityValue]).format("MMMM Do YYYY");
-    let city = cityValue;
-
-    let featureCity = document.querySelector(".city");
-    featureCity.innerHTML = city;
-    let featureCityDate = document.querySelector(".date");
-    featureCityDate.innerHTML = date;
-    let featureCityTime = document.querySelector(".time");
-    featureCityTime.innerHTML = time;
-
-    // alert(`this is ${date} & ${time} in ${cityValue}`);
-  } else {
-    console.log("please select a city");
-  }
+const cities = {
+  auckland: "Pacific/Auckland",
+  sydney: "Australia/Sydney",
+  paris: "Europe/Paris",
+  london: "Europe/London",
+  "new-york": "America/New_York",
 };
+
+let selectedCity = null;
+
+let getAllCities = () => {
+  let featuredCityHTML = "";
+  for (let city in cities) {
+    let time = moment.tz(cities[city]).format("HH:mm:ss");
+    let date = moment.tz(cities[city]).format("MMMM Do YYYY");
+
+    featuredCityHTML =
+      featuredCityHTML +
+      `     <div class="city-sub-container">
+      <div id="city-data">
+            <h2 class="city">${city}</h2>
+            <p class="date">${date}</p>
+          </div>
+          <div class="time">${time}</div>
+      </div>    
+         <hr /> `;
+  }
+
+  let displayAllCitiesOnLoad = document.querySelector(".city-time-container");
+  displayAllCitiesOnLoad.innerHTML = featuredCityHTML;
+};
+
+let getCity = (e) => {
+  selectedCity = e.target.value;
+
+  let time = moment.tz(cities[selectedCity]).format("HH:mm:ss");
+  let date = moment.tz(cities[selectedCity]).format("MMMM Do YYYY");
+
+  let featureCityData = document.querySelector(".city-time-container");
+  featureCityData.innerHTML = `     <div class="city-sub-container">
+        <div id="city-data">
+        <h2 class="city">${selectedCity}</h2>
+        <p class="date">${date}</p>
+        </div>
+        <div class="time">${time}</div>
+        </div>    `;
+  return time;
+};
+
+// let onLoadCities = () => {
+//   if (selectedCity === null) {
+//     getAllCities();
+//   } else {
+//     getCity(selectedCity);
+//   }
+// };
 
 let cityDisplayed = document.querySelector("#select-form");
 cityDisplayed.addEventListener("change", getCity);
 
-const worldClockCities = [];
-
-// display all cities :
+window.addEventListener("load", onLoadCities);
