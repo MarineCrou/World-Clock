@@ -32,6 +32,12 @@ let getAllCities = () => {
 };
 
 let displaySelectedCity = () => {
+  if (selectedCity === "current") {
+    area = moment.tz.guess();
+    cityName = area.replace("_", " ").split("/")[1];
+    selectedCity = cityName.toLowerCase();
+  }
+
   let time = moment.tz(cities[selectedCity]).format("HH:mm");
   let date = moment.tz(cities[selectedCity]).format("MMMM Do YYYY");
 

@@ -75,9 +75,24 @@ header div img {
   border: 1px solid #9fd3c7;
   border-radius: 4px;
   padding: 5px 10px;
-  margin: 30px 0 10px 0;
+  margin: 10px 0 10px 0;
   width: 24rem;
   color: #385170;
+}
+
+main p {
+  font-size: small;
+  text-align: center;
+  font-style: bold;
+  margin-bottom: 10px;
+  margin-top: 30px;
+}
+
+main p span {
+  font-style: italic;
+
+  color: #142d4c;
+  text-transform: capitalize;
 }
 
 .city-time-container {
@@ -85,6 +100,7 @@ header div img {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  margin-top: 20px;
 }
 
 .city-sub-container {
