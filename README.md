@@ -123,3 +123,48 @@ git clone https://github.com/MarineCrou/World-Clock.git
 3. Additional Features:
    Allow users to add custom cities by inputting timezones.
    Integrate a weather API for city-specific weather details.
+
+## Challenges and Learnings :
+
+#### Challenge 1 :
+
+- Time not updating properly for selected cities.
+- setInterval caused multiple calls and conflicts between functions. <br> <br>
+  Fix :
+- Introduced a selectedCity variable to track the active state.
+- Managed intervals with clearInterval to prevent overlapping updates.
+
+#### Challenge 2:
+
+- Switching between displaying all cities and a single city caused inconsistencies.<br> <br>
+  Fix:
+- Used a conditional (if/else) structure in updateTime to determine whether to display all cities or just the selected one.
+- Created distinct functions for "all cities" and "selected city" to maintain clean, separate logic.
+
+#### Challenge 3:
+
+- Misaligned data rendering and missing city names due to incorrect handling of dropdown values (e.target.value).<br> <br>
+  Fix:
+- Validated e.target.value to ensure correct mapping with the cities object.
+- Debugged using console.log to verify values and adjusted logic accordingly.
+
+#### Challenge 4:
+
+- Reverting to "all cities" after selecting a specific city was not seamless.<br> <br>
+  Fix:
+  - Added a condition in the dropdown event handler to re-call the getAllCities function when "All Cities" was selected
+
+#### Challenge 5:
+
+- HTML content re-rendering repeatedly within loops led to unexpected behavior. <br> <br>
+
+Fix:
+
+- Moved the innerHTML assignment outside loops to avoid repetitive overwrites.
+
+#### Additional Insights
+
+- Learned the importance of separating concerns by breaking down the logic into smaller, reusable functions.
+- Recognized how real-time updates can be resource-intensive and required efficient interval management.
+- Improved ability to debug issues using browser developer tools (console logs and error tracing).
+- Gained a deeper understanding of how to handle state (e.g., selectedCity) to maintain user interaction consistency.
